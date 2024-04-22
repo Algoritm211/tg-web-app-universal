@@ -1,0 +1,1 @@
+export {AppConfigProvider} from './provider'
