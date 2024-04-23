@@ -2,9 +2,10 @@
 
 // We can not useState or useRef in a server component, which is why we are
 // extracting this part out into it's own file with 'use client' on top
-import React, {PropsWithChildren} from 'react'
+import React, {PropsWithChildren, useEffect} from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import {AppConfigProvider} from "@/config/config-provider";
+import {useTgWebApp} from "@/telegram-web-app";
 
 function makeQueryClient() {
   return new QueryClient({
@@ -40,6 +41,11 @@ export default function Providers({ children }: PropsWithChildren) {
   //       suspend because React will throw away the client on the initial
   //       render if it suspends and there is no boundary
   const queryClient = getQueryClient()
+  const webApp = useTgWebApp()
+
+  useEffect(() => {
+    webApp?.ready();
+  })
 
   return (
     <AppConfigProvider>
