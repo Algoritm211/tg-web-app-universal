@@ -1,13 +1,14 @@
 import Link from 'next/link';
 import React from 'react';
 
-import {Icon} from '@/shared/components/icon/icon';
+import { Icon } from '@/shared/components/icon/icon';
+
 export const Header = () => {
   return (
     <div className="navbar shadow bg-base-100">
       <div className="navbar-start">
         <label tabIndex={0} htmlFor="menu-drawer" className="btn btn-ghost lg:hidden">
-          <Icon name="menu-bars" className="w-5 h-5"/>
+          <Icon name="menu-bars" className="w-5 h-5" />
         </label>
         <Link className="btn btn-ghost normal-case text-xl" href="/">
           Mao Cars
@@ -34,7 +35,7 @@ export const Header = () => {
             <span className="font-bold mr-2 hidden md:inline">Alexey_Horbunov</span>
             <div className="avatar">
               <div className="w-10 rounded-full">
-                <img src="/user/mock-user-photo.jpeg" alt="The photo of the user"/>
+                <img src="/user/mock-user-photo.jpeg" alt="The photo of the user" />
               </div>
             </div>
           </label>

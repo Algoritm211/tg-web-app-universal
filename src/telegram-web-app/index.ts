@@ -1,1 +1,1 @@
-export {useTgWebApp} from './use-web-app'
+export { useTgWebApp } from './use-web-app';
