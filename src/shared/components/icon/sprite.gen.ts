@@ -1,8 +1,8 @@
 export interface SpritesMap {
-  sprite: 'menu-bars';
+  sprite: 'facebook' | 'footer-stub' | 'menu-bars' | 'twitter' | 'youtube';
 }
 export const SPRITES_META: {
-  sprite: Array<'menu-bars'>;
+  sprite: Array<'facebook' | 'footer-stub' | 'menu-bars' | 'twitter' | 'youtube'>;
 } = {
-  sprite: ['menu-bars'],
+  sprite: ['facebook', 'footer-stub', 'menu-bars', 'twitter', 'youtube'],
 };

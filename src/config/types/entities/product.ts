@@ -1,10 +1,12 @@
-interface Product {
+export interface Product {
   id: string;
   name: string;
   shortDescription?: string;
   description: string;
-  price: number;
-  currency: string;
+  price: {
+    amount: number;
+    currency: string;
+  };
   mainImage: string;
   images: string[];
 }

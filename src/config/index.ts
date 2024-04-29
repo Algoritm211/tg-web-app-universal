@@ -1,1 +1,1 @@
-export { AppConfigProvider } from './provider';
+export { AppConfigProvider } from './config-provider';
