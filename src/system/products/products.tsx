@@ -1,26 +1,22 @@
 'use client';
 
+import { useProducts } from '@/config/api';
 import { config } from '@/config/client-main-config';
 import { useAppConfig } from '@/config/config-provider';
-import { PRODUCTS_KEY } from '@/config/constants';
 import { ProductCard } from '@/shared';
-import { useQuery } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 
 import { ProductContainer } from '@/system/products/components/product-container/product-container';
-import {useRouter} from "next/navigation";
 
 export const Products = () => {
-  const { data: products } = useQuery({
-    queryKey: [PRODUCTS_KEY],
-    queryFn: config.mainPage.fetchProducts,
-  });
+  const { data: products } = useProducts();
   const { mainPage } = useAppConfig();
   const router = useRouter();
 
   const onGoToProduct = (id: string) => {
     console.log(`Redirecting to ${id}`);
-    void router.push(`products/${id}`)
+    void router.push(`products/${id}`);
   };
 
   return (

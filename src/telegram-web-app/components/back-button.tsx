@@ -1,5 +1,5 @@
-import {useEffect} from "react";
-import {useTgWebApp} from "@/telegram-web-app";
+import { useTgWebApp } from '@/telegram-web-app';
+import { useEffect } from 'react';
 
 export interface BackButtonProps {
   /** The back button press event handler */
@@ -8,7 +8,6 @@ export interface BackButtonProps {
 export const BackButton = ({ onClick }: BackButtonProps): null => {
   const WebApp = useTgWebApp();
   const BackButton = WebApp?.BackButton;
-
 
   useEffect(() => {
     if (!onClick || !BackButton) {

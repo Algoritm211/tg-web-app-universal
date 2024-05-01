@@ -1,7 +1,16 @@
-import {Product} from "@/system/product";
+import { config } from '@/config/client-main-config';
+import { PRODUCT_KEY } from '@/config/constants';
+import { QueryClient } from '@tanstack/react-query';
 
-export default function ProductPage({ params }: { params: { slug: string } }) {
-  return (
-    <Product />
-  )
+import { Product } from '@/system/product';
+
+export default async function ProductPage({ params }: { params: { id: string } }) {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: [PRODUCT_KEY],
+    queryFn: () => config.productPage.fetchProduct(params.id),
+  });
+
+  return <Product />;
 }

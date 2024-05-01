@@ -1,1 +1,2 @@
-export const PRODUCTS_KEY = 'products';
+export const PRODUCTS_KEY = 'Products';
+export const PRODUCT_KEY = 'Product';
