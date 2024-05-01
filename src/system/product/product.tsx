@@ -7,6 +7,8 @@ import { useRouter } from 'next-nprogress-bar';
 import { useParams } from 'next/navigation';
 import React from 'react';
 
+import { ProductDetailHeader } from '@/system/product/components';
+
 export const Product = () => {
   const router = useRouter();
   const { id: productId } = useParams<{ id: string }>();
@@ -20,7 +22,8 @@ export const Product = () => {
 
   return (
     <React.Fragment>
-      <pre>Product - {JSON.stringify(product, undefined, 2)}</pre>
+      {/*<pre>Product - {JSON.stringify(product, undefined, 2)}</pre>*/}
+      <ProductDetailHeader title={product?.name} subTitle={product?.shortDescription} />
       <BackButton onClick={routeBack} />
     </React.Fragment>
   );

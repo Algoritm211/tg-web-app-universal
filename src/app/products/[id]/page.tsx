@@ -1,6 +1,6 @@
 import { config } from '@/config/client-main-config';
 import { PRODUCT_KEY } from '@/config/constants';
-import { QueryClient } from '@tanstack/react-query';
+import {dehydrate, HydrationBoundary, QueryClient} from '@tanstack/react-query';
 
 import { Product } from '@/system/product';
 
@@ -12,5 +12,9 @@ export default async function ProductPage({ params }: { params: { id: string } }
     queryFn: () => config.productPage.fetchProduct(params.id),
   });
 
-  return <Product />;
+  return (
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <Product />
+    </HydrationBoundary>
+  );
 }

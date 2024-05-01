@@ -13,8 +13,6 @@ export default async function MainPage() {
   });
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <h1>Some header</h1>
-      <button className="btn btn-primary">Daisy Ui installed!</button>
       <Products />
     </HydrationBoundary>
   );

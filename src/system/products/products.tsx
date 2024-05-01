@@ -23,10 +23,6 @@ export const Products = () => {
 
   return (
     <ProductContainer>
-      {/*<pre suppressHydrationWarning>*/}
-      {/*  Some data:*/}
-      {/*  {JSON.stringify(webApp?.initDataUnsafe, undefined, 2)}*/}
-      {/*</pre>*/}
       {products?.map((product) => {
         return (
           <ProductCard
