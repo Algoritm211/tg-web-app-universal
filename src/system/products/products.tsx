@@ -4,11 +4,11 @@ import { config } from '@/config/client-main-config';
 import { useAppConfig } from '@/config/config-provider';
 import { PRODUCTS_KEY } from '@/config/constants';
 import { ProductCard } from '@/shared';
-import { useTgWebApp } from '@/telegram-web-app';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 
 import { ProductContainer } from '@/system/products/components/product-container/product-container';
+import {useRouter} from "next/navigation";
 
 export const Products = () => {
   const { data: products } = useQuery({
@@ -16,10 +16,11 @@ export const Products = () => {
     queryFn: config.mainPage.fetchProducts,
   });
   const { mainPage } = useAppConfig();
-  const webApp = useTgWebApp();
+  const router = useRouter();
 
   const onGoToProduct = (id: string) => {
     console.log(`Redirecting to ${id}`);
+    void router.push(`products/${id}`)
   };
 
   return (
