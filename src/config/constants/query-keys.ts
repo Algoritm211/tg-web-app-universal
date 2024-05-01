@@ -1,2 +1,2 @@
 export const PRODUCTS_KEY = 'Products';
-export const PRODUCT_KEY = 'Product';
+export const PRODUCT_KEY = (productId: string) => `Product - ${productId}`;

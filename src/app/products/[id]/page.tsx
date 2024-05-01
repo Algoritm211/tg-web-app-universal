@@ -8,7 +8,7 @@ export default async function ProductPage({ params }: { params: { id: string } }
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: [PRODUCT_KEY],
+    queryKey: [PRODUCT_KEY(params.id)],
     queryFn: () => config.productPage.fetchProduct(params.id),
   });
 

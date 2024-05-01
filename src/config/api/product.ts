@@ -5,7 +5,7 @@ import { PRODUCT_KEY } from '../constants';
 
 export const useProduct = (productId: string) => {
   return useQuery({
-    queryKey: [PRODUCT_KEY],
+    queryKey: [PRODUCT_KEY(productId)],
     queryFn: () => config.productPage.fetchProduct(productId),
   });
 };

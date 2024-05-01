@@ -5,6 +5,7 @@
 import { AppConfigProvider } from '@/config';
 import { useTgWebApp } from '@/telegram-web-app';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { AppProgressBar as ProgressBar } from 'next-nprogress-bar';
 import React, { PropsWithChildren, useEffect } from 'react';
 
 function makeQueryClient() {
@@ -49,7 +50,14 @@ export default function Providers({ children }: PropsWithChildren) {
 
   return (
     <AppConfigProvider>
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+      <QueryClientProvider client={queryClient}>
+        {children}
+        <ProgressBar
+          height="2px"
+          color="var(--tg-theme-link-color)"
+          options={{ showSpinner: true }}
+        />
+      </QueryClientProvider>
     </AppConfigProvider>
   );
 }

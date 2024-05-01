@@ -1,10 +1,9 @@
 'use client';
 
 import { useProducts } from '@/config/api';
-import { config } from '@/config/client-main-config';
 import { useAppConfig } from '@/config/config-provider';
 import { ProductCard } from '@/shared';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next-nprogress-bar';
 import React from 'react';
 
 import { ProductContainer } from '@/system/products/components/product-container/product-container';

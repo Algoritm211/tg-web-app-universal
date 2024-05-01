@@ -2,7 +2,8 @@
 
 import { useProduct } from '@/config/api';
 import { BackButton } from '@/telegram-web-app/components';
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next-nprogress-bar';
+import { useParams } from 'next/navigation';
 import React from 'react';
 
 export const Product = () => {
