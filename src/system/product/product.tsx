@@ -8,6 +8,7 @@ import { useParams } from 'next/navigation';
 import React from 'react';
 
 import {ProductDetailHeader, ProductGallery} from '@/system/product/components';
+import {ProductDescription} from "@/system/product/components/product-description/product-description";
 
 export const Product = () => {
   const router = useRouter();
@@ -24,6 +25,7 @@ export const Product = () => {
     <React.Fragment>
       <ProductDetailHeader title={product?.name} subTitle={product?.shortDescription} />
       <ProductGallery photos={product?.images} />
+      <ProductDescription description={product?.description} />
       <BackButton onClick={routeBack} />
     </React.Fragment>
   );

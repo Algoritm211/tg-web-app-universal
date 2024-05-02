@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.revert-tailwind{
+  all: initial;
+}
+
+.revert-tailwind > * {
+  all: revert;
+}
