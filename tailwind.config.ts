@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss'
 import daisyui from 'daisyui'
+import theme from "tailwindcss/defaultTheme";
 const config: Config = {
   content: [
     './src/**/*.{js,ts,jsx,tsx,mdx}',

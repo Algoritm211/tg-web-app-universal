@@ -1,6 +1,5 @@
-import React, { useRef, useState } from 'react';
-
 import { Icon } from '@/shared';
+import React, { useRef, useState } from 'react';
 
 interface Props {
   photos: string[] | undefined;
@@ -76,7 +75,7 @@ export const ProductGallery: React.FC<Props> = ({ photos = [] }) => {
         -translate-y-1/2 pl-8 h-full w-5/12 bg-transparent rounded-lg"
       >
         <Icon
-          name='arrow-left'
+          name="arrow-left"
           className="w-6 h-6 md:w-10 md:h-10 md:hover:scale-150 transition-all"
         />
       </button>
@@ -88,7 +87,7 @@ export const ProductGallery: React.FC<Props> = ({ photos = [] }) => {
         -translate-y-1/2 pr-8 h-full w-5/12 bg-transparent rounded-lg"
       >
         <Icon
-          name='arrow-right'
+          name="arrow-right"
           className="w-6 h-6 md:w-10 md:h-10 md:hover:scale-150 transition-all"
         />
       </button>
