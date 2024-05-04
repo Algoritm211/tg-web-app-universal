@@ -1,5 +1,6 @@
 'use client';
 
+import { useAppConfig } from '@/config/config-provider';
 import { useHapticFeedback } from '@/telegram-web-app/hooks';
 import Link from 'next/link';
 import React from 'react';
@@ -8,6 +9,7 @@ import { Icon } from '@/shared/components/icon/icon';
 
 export const Header = () => {
   const { impactOccurred } = useHapticFeedback();
+  const { global } = useAppConfig();
   return (
     <div className="navbar shadow bg-base-100">
       <div className="navbar-start">
@@ -25,12 +27,14 @@ export const Header = () => {
         </Link>
       </div>
       <div className="navbar-end">
-        <button onClick={() => impactOccurred('medium')} className="btn btn-ghost btn-circle">
-          <div className="indicator">
-            <Icon name="cart" className="w-6 h-6" />
-            <span className="badge badge-xs badge-primary indicator-item">4</span>
-          </div>
-        </button>
+        {global.isUseCart && (
+          <button onClick={() => impactOccurred('medium')} className="btn btn-ghost btn-circle">
+            <div className="indicator">
+              <Icon name="cart" className="w-6 h-6" />
+              <span className="badge badge-xs badge-primary indicator-item">4</span>
+            </div>
+          </button>
+        )}
       </div>
     </div>
   );

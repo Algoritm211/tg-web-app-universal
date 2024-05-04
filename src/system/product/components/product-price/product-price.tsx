@@ -5,11 +5,17 @@ interface Props {
   amount: number | undefined;
   currency: string | undefined;
   actionButtonText: string;
-  isCreatingInvoicePending: boolean,
+  isCreatingInvoicePending: boolean;
   onActionClick: () => void;
 }
 
-export const ProductPrice: React.FC<Props> = ({ amount, currency, isCreatingInvoicePending, actionButtonText, onActionClick }) => {
+export const ProductPrice: React.FC<Props> = ({
+  amount,
+  currency,
+  isCreatingInvoicePending,
+  actionButtonText,
+  onActionClick,
+}) => {
   return (
     <React.Fragment>
       <div className="mx-2 my-0 divider"></div>
@@ -27,7 +33,9 @@ export const ProductPrice: React.FC<Props> = ({ amount, currency, isCreatingInvo
         >
           {isCreatingInvoicePending ? (
             <span className="loading loading-spinner"></span>
-          ) : actionButtonText}
+          ) : (
+            actionButtonText
+          )}
         </button>
       </div>
       <div className="mx-2 my-0 divider"></div>

@@ -1,1 +1,1 @@
-export * from './global-config/default-global-config'
+export * from './global-config/default-global-config';
