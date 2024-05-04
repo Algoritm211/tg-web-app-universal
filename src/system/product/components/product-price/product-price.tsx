@@ -4,10 +4,12 @@ import React from 'react';
 interface Props {
   amount: number | undefined;
   currency: string | undefined;
+  actionButtonText: string;
+  isCreatingInvoicePending: boolean,
   onActionClick: () => void;
 }
 
-export const ProductPrice: React.FC<Props> = ({ amount, currency, onActionClick }) => {
+export const ProductPrice: React.FC<Props> = ({ amount, currency, isCreatingInvoicePending, actionButtonText, onActionClick }) => {
   return (
     <React.Fragment>
       <div className="mx-2 my-0 divider"></div>
@@ -23,7 +25,9 @@ export const ProductPrice: React.FC<Props> = ({ amount, currency, onActionClick 
           onClick={onActionClick}
           className="btn px-12 text-white bg-[var(--tg-theme-link-color)]"
         >
-          Add to cart
+          {isCreatingInvoicePending ? (
+            <span className="loading loading-spinner"></span>
+          ) : actionButtonText}
         </button>
       </div>
       <div className="mx-2 my-0 divider"></div>
