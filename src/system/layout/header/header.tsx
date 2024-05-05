@@ -10,6 +10,7 @@ import { Icon } from '@/shared/components/icon/icon';
 export const Header = () => {
   const { impactOccurred } = useHapticFeedback();
   const { global } = useAppConfig();
+
   return (
     <div className="navbar shadow bg-base-100">
       <div className="navbar-start">
@@ -28,12 +29,21 @@ export const Header = () => {
       </div>
       <div className="navbar-end">
         {global.isUseCart && (
-          <button onClick={() => impactOccurred('medium')} className="btn btn-ghost btn-circle">
+          <Link
+            href="/cart"
+            onClick={() => impactOccurred('medium')}
+            className="btn btn-ghost btn-circle"
+          >
             <div className="indicator">
               <Icon name="cart" className="w-6 h-6" />
-              <span className="badge badge-xs badge-primary indicator-item">4</span>
+              <span
+                className="badge badge-xs text-white indicator-item
+                border-[var(--tg-theme-link-color)] bg-[var(--tg-theme-link-color)]"
+              >
+                4
+              </span>
             </div>
-          </button>
+          </Link>
         )}
       </div>
     </div>

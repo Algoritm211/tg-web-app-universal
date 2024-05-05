@@ -6,6 +6,7 @@ export interface SpritesMap {
     | 'facebook'
     | 'footer-stub'
     | 'menu-bars'
+    | 'trash'
     | 'twitter'
     | 'youtube';
 }
@@ -17,6 +18,7 @@ export const SPRITES_META: {
     | 'facebook'
     | 'footer-stub'
     | 'menu-bars'
+    | 'trash'
     | 'twitter'
     | 'youtube'
   >;
@@ -28,6 +30,7 @@ export const SPRITES_META: {
     'facebook',
     'footer-stub',
     'menu-bars',
+    'trash',
     'twitter',
     'youtube',
   ],
