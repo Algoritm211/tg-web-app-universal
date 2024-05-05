@@ -1,5 +1,5 @@
 import { config } from '@/config/client-main-config';
-import { PRODUCTS_KEY } from '@/config/constants';
+import { PRODUCTS_KEY } from '@/shared';
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 
 import { Products } from '@/system/products';

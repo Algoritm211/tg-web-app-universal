@@ -1,7 +1,6 @@
+import { config } from '@/config/client-main-config';
+import { PRODUCT_KEY } from '@/shared';
 import { useQuery } from '@tanstack/react-query';
-
-import { config } from '../client-main-config';
-import { PRODUCT_KEY } from '../constants';
 
 export const useProduct = (productId: string) => {
   return useQuery({

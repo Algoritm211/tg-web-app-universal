@@ -1,10 +1,10 @@
 'use client';
 
-import { useProduct } from '@/config/api';
-import { useCreateInvoiceLink } from '@/config/api/create-invoice-link';
+import { useProduct } from '@/api';
+import { useCreateInvoiceLink } from '@/api/hooks';
 import { useAppConfig } from '@/config/config-provider';
 import { BackButton } from '@/telegram-web-app/components';
-import { useHapticFeedback, useTgWebApp } from '@/telegram-web-app/hooks';
+import { useHapticFeedback } from '@/telegram-web-app/hooks';
 import { useRouter } from 'next-nprogress-bar';
 import { useParams } from 'next/navigation';
 import React from 'react';

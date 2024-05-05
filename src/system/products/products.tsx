@@ -1,6 +1,6 @@
 'use client';
 
-import { useProducts } from '@/config/api';
+import { useProducts } from '@/api';
 import { useAppConfig } from '@/config/config-provider';
 import { ProductCard } from '@/shared';
 import { useHapticFeedback } from '@/telegram-web-app/hooks';
