@@ -1,16 +1,21 @@
 'use client';
 
-import { useProduct } from '@/api';
+import { useAddItemsToCart, useProduct } from '@/api';
 import { useCreateInvoiceLink } from '@/api/hooks';
 import { useAppConfig } from '@/config/config-provider';
+import { mapProductToProductCartItemDTO } from '@/shared';
 import { BackButton } from '@/telegram-web-app/components';
 import { useHapticFeedback } from '@/telegram-web-app/hooks';
 import { useRouter } from 'next-nprogress-bar';
 import { useParams } from 'next/navigation';
 import React from 'react';
 
-import { ProductDetailHeader, ProductGallery, ProductPrice } from '@/system/product/components';
-import { ProductDescription } from '@/system/product/components/product-description/product-description';
+import {
+  ProductDetailHeader,
+  ProductGallery,
+  ProductPrice,
+  ProductDescription,
+} from './components';
 
 export const Product = () => {
   const router = useRouter();
@@ -20,7 +25,8 @@ export const Product = () => {
   const {
     global: { isUseCart },
   } = useAppConfig();
-  const { mutate: createInvoiceLink, isPending } = useCreateInvoiceLink();
+  const { mutate: createInvoiceLink, isPending: isCreatingInvoice } = useCreateInvoiceLink();
+  const { mutate: addItemToCart, isPending: isAddingToCart } = useAddItemsToCart();
 
   const routeBack = () => {
     impactOccurred('medium');
@@ -28,13 +34,13 @@ export const Product = () => {
   };
 
   const onAddToCart = () => {
-    console.log(product);
+    if (!product) return;
+    addItemToCart(mapProductToProductCartItemDTO(product));
   };
 
   const onCreateInvoice = async () => {
-    if (product) {
-      createInvoiceLink(product);
-    }
+    if (!product) return;
+    createInvoiceLink(product);
   };
 
   return (
@@ -44,7 +50,7 @@ export const Product = () => {
       <ProductPrice
         amount={product?.price.amount}
         currency={product?.price.currency}
-        isCreatingInvoicePending={isPending}
+        isCreatingInvoicePending={isCreatingInvoice || isAddingToCart}
         actionButtonText={isUseCart ? 'Add to card' : 'Buy instantly'}
         onActionClick={isUseCart ? onAddToCart : onCreateInvoice}
       />

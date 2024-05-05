@@ -1,5 +1,6 @@
 'use client';
 
+import { useCartItems } from '@/api';
 import { useAppConfig } from '@/config/config-provider';
 import { useHapticFeedback } from '@/telegram-web-app/hooks';
 import Link from 'next/link';
@@ -10,6 +11,7 @@ import { Icon } from '@/shared/components/icon/icon';
 export const Header = () => {
   const { impactOccurred } = useHapticFeedback();
   const { global } = useAppConfig();
+  const { data: cartItems, isLoading } = useCartItems();
 
   return (
     <div className="navbar shadow bg-base-100">
@@ -34,15 +36,19 @@ export const Header = () => {
             onClick={() => impactOccurred('medium')}
             className="btn btn-ghost btn-circle"
           >
-            <div className="indicator">
-              <Icon name="cart" className="w-6 h-6" />
-              <span
-                className="badge badge-xs text-white indicator-item
+            {isLoading ? (
+              <span className="loading loading-spinner" />
+            ) : (
+              <div className="indicator">
+                <Icon name="cart" className="w-6 h-6" />
+                <span
+                  className="badge badge-xs text-white indicator-item
                 border-[var(--tg-theme-link-color)] bg-[var(--tg-theme-link-color)]"
-              >
-                4
-              </span>
-            </div>
+                >
+                  {cartItems?.length}
+                </span>
+              </div>
+            )}
           </Link>
         )}
       </div>
