@@ -10,10 +10,10 @@ import React from 'react';
 import { ProductContainer } from '@/system/products/components/product-container/product-container';
 
 export const Products = () => {
+  const router = useRouter();
   const { data: products } = useProducts();
   const { impactOccurred } = useHapticFeedback();
   const { mainPage } = useAppConfig();
-  const router = useRouter();
 
   const onGoToProduct = (id: string) => {
     console.log(`Redirecting to ${id}`);
