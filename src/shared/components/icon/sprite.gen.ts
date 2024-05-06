@@ -3,6 +3,7 @@ export interface SpritesMap {
     | 'arrow-left'
     | 'arrow-right'
     | 'cart'
+    | 'check-circle'
     | 'facebook'
     | 'footer-stub'
     | 'menu-bars'
@@ -15,6 +16,7 @@ export const SPRITES_META: {
     | 'arrow-left'
     | 'arrow-right'
     | 'cart'
+    | 'check-circle'
     | 'facebook'
     | 'footer-stub'
     | 'menu-bars'
@@ -27,6 +29,7 @@ export const SPRITES_META: {
     'arrow-left',
     'arrow-right',
     'cart',
+    'check-circle',
     'facebook',
     'footer-stub',
     'menu-bars',

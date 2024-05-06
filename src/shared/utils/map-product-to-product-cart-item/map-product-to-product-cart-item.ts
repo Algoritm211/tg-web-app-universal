@@ -5,5 +5,6 @@ export const mapProductToProductCartItemDTO = (product: Product): ProductCartIte
     id: product.id,
     name: product.name,
     price: product.price,
+    image: product.mainImage,
   };
 };

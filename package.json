@@ -15,7 +15,7 @@
     "@tanstack/react-query": "^5.31.0",
     "@tanstack/react-query-devtools": "^5.31.0",
     "@types/telegram-web-app": "^7.2.1",
-    "clsx": "^2.1.0",
+    "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
     "next": "14.2.2",
     "next-nprogress-bar": "^2.3.11",

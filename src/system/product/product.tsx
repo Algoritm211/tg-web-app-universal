@@ -1,6 +1,6 @@
 'use client';
 
-import { useAddItemsToCart, useProduct } from '@/api';
+import { useAddItemsToCart, useCartItems, useProduct } from '@/api';
 import { useCreateInvoiceLink } from '@/api/hooks';
 import { useAppConfig } from '@/config/config-provider';
 import { mapProductToProductCartItemDTO } from '@/shared';
@@ -25,8 +25,11 @@ export const Product = () => {
   const {
     global: { isUseCart },
   } = useAppConfig();
+  const { data: cartItems } = useCartItems();
   const { mutate: createInvoiceLink, isPending: isCreatingInvoice } = useCreateInvoiceLink();
   const { mutate: addItemToCart, isPending: isAddingToCart } = useAddItemsToCart();
+
+  const isProductInCart = cartItems?.find((elem) => elem.id === product?.id) !== undefined;
 
   const routeBack = () => {
     impactOccurred('medium');
@@ -50,6 +53,7 @@ export const Product = () => {
       <ProductPrice
         amount={product?.price.amount}
         currency={product?.price.currency}
+        isProductInCart={isProductInCart}
         isCreatingInvoicePending={isCreatingInvoice || isAddingToCart}
         actionButtonText={isUseCart ? 'Add to card' : 'Buy instantly'}
         onActionClick={isUseCart ? onAddToCart : onCreateInvoice}

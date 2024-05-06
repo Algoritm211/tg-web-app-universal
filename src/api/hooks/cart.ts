@@ -5,6 +5,11 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 const CART_STORAGE_KEY = 'SHOP_CART';
 
+export enum CartItemRemoveType {
+  subtract = 'subtract',
+  removeCompletely = 'removeCompletely',
+}
+
 export const useCartItems = () => {
   return useQuery({
     queryKey: [CART],
@@ -49,7 +54,13 @@ export const useRemoveItemsFromCart = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (itemToRemove: ProductCartItemDTO) => {
+    mutationFn: async ({
+      itemToRemove,
+      removeType = CartItemRemoveType.subtract,
+    }: {
+      itemToRemove: ProductCartItemDTO;
+      removeType: CartItemRemoveType;
+    }) => {
       const rawCartItems = await cloudStorageClient.getItem(CART_STORAGE_KEY);
       if (!rawCartItems) {
         return;
@@ -57,6 +68,10 @@ export const useRemoveItemsFromCart = () => {
 
       const cartItems = JSON.parse(rawCartItems) as ProductCartItem[];
       const existingItemIndex = cartItems.findIndex((item) => item.id === itemToRemove.id);
+
+      if (removeType === CartItemRemoveType.removeCompletely) {
+        cartItems[existingItemIndex].count = 0;
+      }
 
       if (cartItems[existingItemIndex].count > 1) {
         cartItems[existingItemIndex].count -= 1;
