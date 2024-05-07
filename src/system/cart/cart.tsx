@@ -2,10 +2,12 @@
 
 import { CartItemRemoveType, useAddItemsToCart, useCartItems, useRemoveItemsFromCart } from '@/api';
 import { ProductCartItem } from '@/config/types/entities';
+import { currencyFormatter, EmptyState, Icon } from '@/shared';
 import { BackButton } from '@/telegram-web-app/components';
 import { useHapticFeedback } from '@/telegram-web-app/hooks';
 import { clsx } from 'clsx';
 import { useRouter } from 'next-nprogress-bar';
+import Link from 'next/link';
 import React from 'react';
 
 import { CartItem } from './components';
@@ -17,6 +19,10 @@ export const Cart = () => {
   const { mutate: addItemToCart, isPending: isAddingItemsToCart } = useAddItemsToCart();
   const { mutate: removeItem, isPending: isRemovingItemsFromCart } = useRemoveItemsFromCart();
   const isLoading = isAddingItemsToCart || isRemovingItemsFromCart;
+  const totalCartSum =
+    cartItems?.reduce((acc, elem) => {
+      return acc + elem.count * elem.price.amount;
+    }, 0) || 0;
 
   const routeBack = () => {
     impactOccurred('medium');
@@ -31,8 +37,21 @@ export const Cart = () => {
     removeItem({ itemToRemove: product, removeType });
   };
 
+  if (!cartItems || cartItems.length === 0) {
+    return <EmptyState actionButtonText="Go to main page" onActionButtonClick={routeBack} />;
+  }
+
   return (
     <React.Fragment>
+      <div className="mx-4 flex justify-end">
+        <Link
+          href="/"
+          className="link text-[var(--tg-theme-link-color)] hover:opacity-80 font-bold"
+        >
+          Edit choice
+        </Link>
+      </div>
+      <div className="mx-2 my-2 divider"></div>
       <div className={clsx('flex gap-2 flex-col px-2', { 'opacity-80': isLoading })}>
         {cartItems?.map((product) => {
           return (
@@ -45,6 +64,11 @@ export const Cart = () => {
             />
           );
         })}
+      </div>
+      <div className="mx-2 my-2 divider"></div>
+      <div className="mx-4 flex justify-between font-bold">
+        <span>Total:</span>
+        <span>{currencyFormatter(totalCartSum, cartItems?.[0]?.price.currency)}</span>
       </div>
       <BackButton onClick={routeBack} />
     </React.Fragment>
