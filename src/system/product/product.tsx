@@ -5,6 +5,7 @@ import { useCreateInvoiceLink } from '@/api/hooks';
 import { useAppConfig } from '@/config/config-provider';
 import { mapProductToProductCartItemDTO } from '@/shared';
 import { BackButton } from '@/telegram-web-app/components';
+import MainButton from '@/telegram-web-app/components/main-button';
 import { useHapticFeedback } from '@/telegram-web-app/hooks';
 import { useRouter } from 'next-nprogress-bar';
 import { useParams } from 'next/navigation';
@@ -36,6 +37,11 @@ export const Product = () => {
     void router.back();
   };
 
+  const routeToCart = () => {
+    impactOccurred('medium');
+    void router.push('/cart');
+  };
+
   const onAddToCart = () => {
     if (!product) return;
     addItemToCart(mapProductToProductCartItemDTO(product));
@@ -60,6 +66,8 @@ export const Product = () => {
       />
       <ProductDescription description={product?.description} />
       <BackButton onClick={routeBack} />
+
+      {cartItems?.length !== 0 && <MainButton text="View your order" onClick={routeToCart} />}
     </React.Fragment>
   );
 };

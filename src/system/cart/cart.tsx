@@ -4,14 +4,14 @@ import { CartItemRemoveType, useAddItemsToCart, useCartItems, useRemoveItemsFrom
 import { ProductCartItem } from '@/config/types/entities';
 import { currencyFormatter, EmptyState, Icon } from '@/shared';
 import { BackButton } from '@/telegram-web-app/components';
-import {useHapticFeedback, useTgWebApp} from '@/telegram-web-app/hooks';
+import MainButton from '@/telegram-web-app/components/main-button';
+import { useHapticFeedback, useTgWebApp } from '@/telegram-web-app/hooks';
 import { clsx } from 'clsx';
 import { useRouter } from 'next-nprogress-bar';
 import Link from 'next/link';
 import React from 'react';
 
 import { CartItem } from './components';
-import MainButton from "@/telegram-web-app/components/main-button";
 
 export const Cart = () => {
   const router = useRouter();
@@ -44,8 +44,8 @@ export const Cart = () => {
   }
 
   const onCreateInvoice = () => {
-    WebApp?.showAlert('Creating invoice....')
-  }
+    WebApp?.showAlert('Creating invoice....');
+  };
 
   return (
     <React.Fragment>
@@ -79,7 +79,7 @@ export const Cart = () => {
       <BackButton onClick={routeBack} />
       <MainButton
         text={`Pay ${currencyFormatter(totalCartSum, cartItems?.[0]?.price.currency)}`}
-        color='#52c41a'
+        color="#52c41a"
         onClick={onCreateInvoice}
       />
     </React.Fragment>

@@ -1,5 +1,6 @@
+import { useTgWebApp } from '@/telegram-web-app';
+import { systemContext, useSmoothButtonsTransition } from '@/telegram-web-app/core';
 import { useContext, useEffect, useId } from 'react';
-import {useTgWebApp} from "@/telegram-web-app";
 
 /**
  * The props type of {@link MainButton | `MainButton`}.
@@ -40,20 +41,19 @@ export interface MainButtonProps {
   textColor?: string;
 }
 
-
 const MainButton = ({
   text = 'CONTINUE',
   progress = false,
-  disable: disable_old,
-  disabled: disable_new = false,
+  disabled = false,
   color,
   textColor,
   onClick,
 }: MainButtonProps): null => {
+  const system = useContext(systemContext);
+  const buttonId = useId();
   const WebApp = useTgWebApp();
   const MainButton = WebApp?.MainButton;
   const themeParams = WebApp?.themeParams;
-  const disabled = disable_old || disable_new;
 
   useEffect(() => {
     MainButton?.setParams({
@@ -98,13 +98,12 @@ const MainButton = ({
     };
   }, [onClick, MainButton]);
 
-  useEffect(() => {
-    MainButton?.show()
-
-    return () => {
-      MainButton?.hide()
-    };
-  }, []);
+  useSmoothButtonsTransition({
+    show: MainButton?.show,
+    hide: MainButton?.hide,
+    currentShowedIdRef: system.MainButton,
+    id: buttonId,
+  });
 
   return null;
 };
