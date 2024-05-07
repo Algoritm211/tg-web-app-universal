@@ -4,16 +4,18 @@ import { CartItemRemoveType, useAddItemsToCart, useCartItems, useRemoveItemsFrom
 import { ProductCartItem } from '@/config/types/entities';
 import { currencyFormatter, EmptyState, Icon } from '@/shared';
 import { BackButton } from '@/telegram-web-app/components';
-import { useHapticFeedback } from '@/telegram-web-app/hooks';
+import {useHapticFeedback, useTgWebApp} from '@/telegram-web-app/hooks';
 import { clsx } from 'clsx';
 import { useRouter } from 'next-nprogress-bar';
 import Link from 'next/link';
 import React from 'react';
 
 import { CartItem } from './components';
+import MainButton from "@/telegram-web-app/components/main-button";
 
 export const Cart = () => {
   const router = useRouter();
+  const WebApp = useTgWebApp();
   const { impactOccurred } = useHapticFeedback();
   const { data: cartItems } = useCartItems();
   const { mutate: addItemToCart, isPending: isAddingItemsToCart } = useAddItemsToCart();
@@ -39,6 +41,10 @@ export const Cart = () => {
 
   if (!cartItems || cartItems.length === 0) {
     return <EmptyState actionButtonText="Go to main page" onActionButtonClick={routeBack} />;
+  }
+
+  const onCreateInvoice = () => {
+    WebApp?.showAlert('Creating invoice....')
   }
 
   return (
@@ -71,6 +77,11 @@ export const Cart = () => {
         <span>{currencyFormatter(totalCartSum, cartItems?.[0]?.price.currency)}</span>
       </div>
       <BackButton onClick={routeBack} />
+      <MainButton
+        text={`Pay ${currencyFormatter(totalCartSum, cartItems?.[0]?.price.currency)}`}
+        color='#52c41a'
+        onClick={onCreateInvoice}
+      />
     </React.Fragment>
   );
 };

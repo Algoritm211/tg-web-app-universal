@@ -2,6 +2,12 @@ import svg from '@neodx/svg/webpack'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  /**
+   * Need to disable it to work with telegram native entities like
+   * MainButton or BackButton without glitch caused additional cycle
+   * which strict mode provides
+   */
+  reactStrictMode: false,
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.plugins.push(
