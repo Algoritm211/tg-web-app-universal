@@ -1,9 +1,11 @@
-import { Product } from '@/config/types/entities';
+import { Product, ProductCartItem } from '@/config/types/entities';
 
-export const fetchInvoiceLink = async (product: Product): Promise<string> => {
+export const fetchInvoiceLink = async (
+  products: Product[] | ProductCartItem[]
+): Promise<string> => {
   const res = await fetch('/api/create-invoice-link', {
     method: 'POST',
-    body: JSON.stringify(product),
+    body: JSON.stringify(products),
   });
 
   const invoiceLink = await res.json();

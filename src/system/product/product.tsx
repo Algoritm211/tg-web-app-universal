@@ -1,11 +1,10 @@
 'use client';
 
 import { useAddItemsToCart, useCartItems, useProduct } from '@/api';
-import { useCreateInvoiceLink } from '@/api/hooks';
+import { useCreateInvoice } from '@/api/hooks';
 import { useAppConfig } from '@/config/config-provider';
 import { mapProductToProductCartItemDTO } from '@/shared';
-import { BackButton } from '@/telegram-web-app/components';
-import MainButton from '@/telegram-web-app/components/main-button';
+import { BackButton, MainButton } from '@/telegram-web-app/components';
 import { useHapticFeedback } from '@/telegram-web-app/hooks';
 import { useRouter } from 'next-nprogress-bar';
 import { useParams } from 'next/navigation';
@@ -27,7 +26,7 @@ export const Product = () => {
     global: { isUseCart },
   } = useAppConfig();
   const { data: cartItems } = useCartItems();
-  const { mutate: createInvoiceLink, isPending: isCreatingInvoice } = useCreateInvoiceLink();
+  const { mutate: createInvoice, isPending: isCreatingInvoice } = useCreateInvoice();
   const { mutate: addItemToCart, isPending: isAddingToCart } = useAddItemsToCart();
 
   const isProductInCart = cartItems?.find((elem) => elem.id === product?.id) !== undefined;
@@ -47,9 +46,9 @@ export const Product = () => {
     addItemToCart(mapProductToProductCartItemDTO(product));
   };
 
-  const onCreateInvoice = async () => {
+  const onCreateInvoice = () => {
     if (!product) return;
-    createInvoiceLink(product);
+    createInvoice([product]);
   };
 
   return (

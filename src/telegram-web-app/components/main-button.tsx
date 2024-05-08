@@ -41,7 +41,7 @@ export interface MainButtonProps {
   textColor?: string;
 }
 
-const MainButton = ({
+export const MainButton = ({
   text = 'CONTINUE',
   progress = false,
   disabled = false,
@@ -107,5 +107,3 @@ const MainButton = ({
 
   return null;
 };
-
-export default MainButton;

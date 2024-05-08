@@ -1,4 +1,4 @@
-import { Product } from '@/config/types/entities';
+import { Product, ProductCartItem } from '@/config/types/entities';
 
 export interface GlobalConfig {
   /**
@@ -7,5 +7,5 @@ export interface GlobalConfig {
    */
   isUseCart: boolean;
 
-  createInvoiceLink?: (product: Product) => Promise<string>;
+  createInvoiceLink?: (product: Product[] | ProductCartItem[]) => Promise<string>;
 }
