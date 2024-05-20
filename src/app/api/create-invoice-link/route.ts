@@ -1,4 +1,5 @@
 import { Product, ProductCartItem } from '@/config/types/entities';
+import { truncateString } from '@/shared';
 import { Telegram, Types } from 'telegraf';
 
 const bot = new Telegram(process.env.TELEGRAM_BOT_TOKEN!);
@@ -21,14 +22,12 @@ export async function POST(request: Request) {
     currency,
     prices: products.map((product) => ({
       amount: product.price.amount * ((product as ProductCartItem)?.count || 1) * 100,
-      label: `${product.name} ${(product as ProductCartItem).count || 1}x`,
+      label: `${truncateString(product.name, 25)} ${(product as ProductCartItem).count || 1}x`,
     })),
     photo_url: `${process.env.VERCEL_URL || process.env.TEST_NGROK_URL || 'http://localhost:3000'}/invoice/invoice-stub-image.png`,
     photo_height: 800,
     photo_width: 800,
   };
-
-  console.log('INVOICE', invoice);
 
   const link = await bot.createInvoiceLink(invoice);
 

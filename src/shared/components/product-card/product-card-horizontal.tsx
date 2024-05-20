@@ -18,7 +18,7 @@ export const ProductCardHorizontal: React.FC<Props> = ({ product, goToProductDet
   return (
     <div
       className="grid w-full grid-cols-[100px_1fr] gap-2 bg-base-100
-       shadow-xl rounded-xl overflow-hidden"
+       shadow-xl rounded-xl overflow-hidden cursor-pointer"
       onClick={goToProductDetailsClick}
     >
       <div className="basis-1/3">
