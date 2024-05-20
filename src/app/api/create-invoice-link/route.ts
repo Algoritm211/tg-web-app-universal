@@ -20,7 +20,7 @@ export async function POST(request: Request) {
     provider_token: process.env.PAYMENTS_PROVIDER_TOKEN!,
     currency,
     prices: products.map((product) => ({
-      amount: product.price.amount * ((product as ProductCartItem)?.count || 1),
+      amount: product.price.amount * ((product as ProductCartItem)?.count || 1) * 100,
       label: `${product.name} ${(product as ProductCartItem).count || 1}x`,
     })),
     photo_url: `${process.env.VERCEL_URL || process.env.TEST_NGROK_URL || 'http://localhost:3000'}/invoice/invoice-stub-image.png`,

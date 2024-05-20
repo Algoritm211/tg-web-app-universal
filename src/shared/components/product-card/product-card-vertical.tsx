@@ -27,9 +27,9 @@ export const ProductCardVertical: React.FC<Props> = ({ product, goToProductDetai
       <div className="card-body">
         <h2 className="card-title">{name}</h2>
         {/* Car specs */}
-        <p>{shortDescription}</p>
+        {shortDescription && <p>{shortDescription}</p>}
         {/* Address */}
-        <p className="text-gray-500">{currencyFormatter(amount, currency)}</p>
+        <p className="text-gray-500">Price: {currencyFormatter(amount, currency)}</p>
       </div>
     </div>
   );
