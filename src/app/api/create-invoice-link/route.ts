@@ -4,6 +4,8 @@ import { Telegram, Types } from 'telegraf';
 
 const bot = new Telegram(process.env.TELEGRAM_BOT_TOKEN!);
 
+const BASE_PROD_URL = 'https://tg-web-app-flower-shop-demo.vercel.app';
+
 export async function POST(request: Request) {
   const products = (await request.json()) as Product[] | ProductCartItem[];
 
@@ -27,7 +29,7 @@ export async function POST(request: Request) {
         label: `all products price`,
       },
     ],
-    photo_url: `${process.env.VERCEL_URL || process.env.NEXT_PUBLIC_TEST_NGROK_URL || 'http://localhost:3000'}/invoice/invoice-stub-image.png`,
+    photo_url: `${BASE_PROD_URL || process.env.VERCEL_URL || process.env.NEXT_PUBLIC_TEST_NGROK_URL || 'http://localhost:3000'}/invoice/invoice-stub-image.png`,
     photo_height: 800,
     photo_width: 800,
   } as Types.NewInvoiceLinkParameters;
