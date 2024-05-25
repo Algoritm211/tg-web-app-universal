@@ -2,6 +2,8 @@ import { Telegraf } from 'telegraf';
 
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN!);
 
+const BASE_PROD_URL = 'https://tg-web-app-flower-shop-demo.vercel.app';
+
 bot.start(async (ctx) => {
   // Using context shortcut
   await ctx.reply(
@@ -25,7 +27,7 @@ export async function POST(request: Request) {
     console.log(searchParams, body);
 
     if (searchParams.get('setWebhook') === 'true') {
-      const webhookUrl = `${process.env.VERCEL_URL}/api/bot/webhook`;
+      const webhookUrl = `${BASE_PROD_URL}/api/bot/webhook`;
 
       const isSet = await bot.telegram.setWebhook(webhookUrl);
       console.log(`Set webhook to ${webhookUrl}: ${isSet}`);
