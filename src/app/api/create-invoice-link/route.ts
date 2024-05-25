@@ -24,7 +24,7 @@ export async function POST(request: Request) {
       amount: product.price.amount * ((product as ProductCartItem)?.count || 1) * 100,
       label: `${truncateString(product.name, 25)} ${(product as ProductCartItem).count || 1}x`,
     })),
-    photo_url: `${process.env.VERCEL_URL || process.env.TEST_NGROK_URL || 'http://localhost:3000'}/invoice/invoice-stub-image.png`,
+    photo_url: `${process.env.VERCEL_URL || process.env.NEXT_PUBLIC_TEST_NGROK_URL || 'http://localhost:3000'}/invoice/invoice-stub-image.png`,
     photo_height: 800,
     photo_width: 800,
   };
