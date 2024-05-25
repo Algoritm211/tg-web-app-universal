@@ -24,7 +24,7 @@ export const Header = () => {
           className="btn btn-ghost normal-case text-xl"
           href="/"
         >
-          Your Resource Name
+          💐Flower Shop
         </Link>
       </div>
       <div className="navbar-end">
