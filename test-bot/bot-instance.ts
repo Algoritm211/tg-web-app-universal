@@ -1,5 +1,4 @@
 import { Telegraf } from 'telegraf'
-import { message } from 'telegraf/filters'
 import dotenv from 'dotenv';
 import path from 'path'
 
