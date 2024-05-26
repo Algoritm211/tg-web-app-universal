@@ -21,7 +21,7 @@ export async function POST(request: Request) {
     description: DESCRIPTION,
     payload: 'payment-from-tg-bot',
     provider_token: process.env.PAYMENTS_PROVIDER_TOKEN!,
-    currency: 'UAH',
+    currency,
     prices: products.map((product) => ({
       amount: product.price.amount * ((product as ProductCartItem)?.count || 1) * 100,
       label: `${truncateString(product.name, 25)} ${(product as ProductCartItem).count || 1}x`,
