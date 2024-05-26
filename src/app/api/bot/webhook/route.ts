@@ -26,14 +26,23 @@ bot.on('pre_checkout_query', async (ctx) => {
 });
 
 bot.on(message('successful_payment'), async (ctx) => {
-  console.log(ctx);
+  await ctx.reply(
+    `Thank you, <b>${ctx.message.from.first_name}</b>. for your order! 📋
+
+Don't worry, your <b>imaginary credit card</b> 💳 was not charged. 
+
+Your order is not on the way, because it's test 🙂. 
+
+<b>Have a great day!</b>
+`,
+    { parse_mode: 'HTML' }
+  );
 });
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
     const { searchParams } = new URL(request.url);
-    console.log(searchParams, body);
 
     if (searchParams.get('setWebhook') === 'true') {
       const webhookUrl = `${BASE_PROD_URL}/api/bot/webhook`;
