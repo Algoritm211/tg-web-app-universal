@@ -1,4 +1,5 @@
 import { Telegraf } from 'telegraf';
+import { message } from 'telegraf/filters';
 
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN!);
 
@@ -18,6 +19,14 @@ bot.start(async (ctx) => {
 `,
     { parse_mode: 'HTML' }
   );
+});
+
+bot.on('pre_checkout_query', async (ctx) => {
+  return ctx.answerPreCheckoutQuery(true);
+});
+
+bot.on(message('successful_payment'), async (ctx) => {
+  console.log(ctx);
 });
 
 export async function POST(request: Request) {
