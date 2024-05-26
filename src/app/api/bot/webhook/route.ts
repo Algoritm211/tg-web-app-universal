@@ -27,13 +27,13 @@ bot.on('pre_checkout_query', async (ctx) => {
 
 bot.on(message('successful_payment'), async (ctx) => {
   await ctx.reply(
-    `Thank you, <b>${ctx.message.from.first_name}</b>. for your order! 📋
+    `Thank you, <b>${ctx.message.from.first_name}</b> for your order! 📋
 
 Don't worry, your <b>imaginary credit card</b> 💳 was not charged. 
 
-Your order is not on the way, because it's test 🙂. 
+Your order is not on the way to your shipping address, because it's test 🙂. 
 
-<b>Have a great day!</b>
+<b>Have a great day! 🤝</b>
 `,
     { parse_mode: 'HTML' }
   );
