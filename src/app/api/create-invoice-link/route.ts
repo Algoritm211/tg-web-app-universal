@@ -21,12 +21,13 @@ export async function POST(request: Request) {
     description: DESCRIPTION,
     payload: 'payment-from-tg-bot',
     provider_token: process.env.PAYMENTS_PROVIDER_TOKEN!,
-    currency,
+    currency: 'UAH',
     prices: products.map((product) => ({
       amount: product.price.amount * ((product as ProductCartItem)?.count || 1) * 100,
       label: `${truncateString(product.name, 25)} ${(product as ProductCartItem).count || 1}x`,
     })),
     photo_url: `${BASE_PROD_URL || process.env.VERCEL_URL || process.env.NEXT_PUBLIC_TEST_NGROK_URL || 'http://localhost:3000'}/invoice/invoice-stub-image.png`,
+    need_shipping_address: true,
     photo_height: 800,
     photo_width: 800,
   };
