@@ -2,8 +2,9 @@
 
 // We can not useState or useRef in a server component, which is why we are
 // extracting this part out into it's own file with 'use client' on top
+import { useCartItems, useRemoveItemsFromCart } from '@/api';
 import { AppConfigProvider } from '@/config';
-import { useTgWebApp } from '@/telegram-web-app';
+import { InvoiceClosePaymentInfo, useTgWebApp } from '@/telegram-web-app';
 import { TonProvider } from '@/ton-integration';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AppProgressBar as ProgressBar } from 'next-nprogress-bar';
@@ -48,6 +49,21 @@ export default function Providers({ children }: PropsWithChildren) {
   useEffect(() => {
     webApp?.ready();
     webApp?.expand();
+  }, []);
+
+  const paymentInfoHandler = (paymentInfo: InvoiceClosePaymentInfo) => {
+    console.log('PAYMENT INFO', paymentInfo);
+    if (paymentInfo.status === 'paid') {
+      webApp?.close();
+    }
+  };
+
+  useEffect(() => {
+    webApp?.onEvent('invoiceClosed', paymentInfoHandler);
+
+    return () => {
+      webApp?.offEvent('invoiceClosed', paymentInfoHandler);
+    };
   }, []);
 
   return (
