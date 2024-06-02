@@ -1,3 +1,4 @@
+import { PaymentMethod } from '@/config/types/enums';
 import { currencyFormatter, Icon } from '@/shared';
 import React from 'react';
 
@@ -8,6 +9,7 @@ interface Props {
   isCreatingInvoicePending: boolean;
   onActionClick: () => void;
   isProductInCart: boolean;
+  paymentMethods: PaymentMethod[] | undefined;
 }
 
 export const ProductPrice: React.FC<Props> = ({
@@ -17,6 +19,7 @@ export const ProductPrice: React.FC<Props> = ({
   actionButtonText,
   onActionClick,
   isProductInCart,
+  paymentMethods,
 }) => {
   return (
     <React.Fragment>
@@ -26,7 +29,9 @@ export const ProductPrice: React.FC<Props> = ({
           <span className="text-xl font-bold text-success">
             {currencyFormatter(amount || 0, currency)}
           </span>
-          <span className="text-sm font-bold">By card, ton wallet</span>
+          <span className="text-sm font-bold">
+            By {new Intl.ListFormat('en-US', { type: 'disjunction' }).format(paymentMethods!)}
+          </span>
         </div>
 
         {isProductInCart ? (

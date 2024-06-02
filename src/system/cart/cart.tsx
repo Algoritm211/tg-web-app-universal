@@ -1,27 +1,20 @@
 'use client';
 
-import {
-  CartItemRemoveType,
-  useAddItemsToCart,
-  useCartItems,
-  useCreateInvoice,
-  useRemoveItemsFromCart,
-} from '@/api';
+import { CartItemRemoveType, useAddItemsToCart, useCartItems, useRemoveItemsFromCart } from '@/api';
 import { ProductCartItem } from '@/config/types/entities';
-import { currencyFormatter, EmptyState } from '@/shared';
+import { currencyFormatter, EmptyState, ProductPaymentProcess } from '@/shared';
 import { BackButton, MainButton } from '@/telegram-web-app/components';
 import { useHapticFeedback } from '@/telegram-web-app/hooks';
 import { clsx } from 'clsx';
 import { useRouter } from 'next-nprogress-bar';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 
 import { CartItem } from './components';
 
 export const Cart = () => {
   const router = useRouter();
   const { impactOccurred } = useHapticFeedback();
-  const { mutate: createInvoice, isPending: isInvoiceCreating } = useCreateInvoice();
   const { data: cartItems } = useCartItems();
   const { mutate: addItemToCart, isPending: isAddingItemsToCart } = useAddItemsToCart();
   const { mutate: removeItem, isPending: isRemovingItemsFromCart } = useRemoveItemsFromCart();
@@ -42,11 +35,6 @@ export const Cart = () => {
 
   const onRemoveItem = (product: ProductCartItem, removeType: CartItemRemoveType) => {
     removeItem({ itemToRemove: product, removeType });
-  };
-
-  const onCreateInvoice = () => {
-    if (!cartItems || cartItems?.length === 0) return;
-    createInvoice(cartItems);
   };
 
   return (
@@ -82,12 +70,7 @@ export const Cart = () => {
             <span>Total:</span>
             <span>{currencyFormatter(totalCartSum, cartItems?.[0]?.price.currency)}</span>
           </div>
-          <MainButton
-            text={`Pay ${currencyFormatter(totalCartSum, cartItems?.[0]?.price.currency)}`}
-            progress={isInvoiceCreating}
-            color="#52c41a"
-            onClick={onCreateInvoice}
-          />
+          <ProductPaymentProcess totalSum={totalCartSum} cartItems={cartItems} />
         </>
       )}
       <BackButton onClick={routeBack} />

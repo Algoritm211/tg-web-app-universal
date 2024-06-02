@@ -23,7 +23,7 @@ export const Product = () => {
   const { data: product } = useProduct(productId);
   const { impactOccurred } = useHapticFeedback();
   const {
-    global: { isUseCart },
+    global: { paymentMethods },
   } = useAppConfig();
   const { data: cartItems } = useCartItems();
   const { mutate: createInvoice, isPending: isCreatingInvoice } = useCreateInvoice();
@@ -46,22 +46,18 @@ export const Product = () => {
     addItemToCart(mapProductToProductCartItemDTO(product));
   };
 
-  const onCreateInvoice = () => {
-    if (!product) return;
-    createInvoice([product]);
-  };
-
   return (
     <React.Fragment>
       <ProductDetailHeader title={product?.name} subTitle={product?.shortDescription} />
       <ProductGallery photos={product?.images} />
       <ProductPrice
+        actionButtonText="Add to card"
         amount={product?.price.amount}
         currency={product?.price.currency}
+        paymentMethods={paymentMethods}
         isProductInCart={isProductInCart}
         isCreatingInvoicePending={isCreatingInvoice || isAddingToCart}
-        actionButtonText={isUseCart ? 'Add to card' : 'Buy instantly'}
-        onActionClick={isUseCart ? onAddToCart : onCreateInvoice}
+        onActionClick={onAddToCart}
       />
       <ProductDescription description={product?.description} />
       <BackButton onClick={routeBack} />

@@ -1,11 +1,8 @@
 import { Product, ProductCartItem } from '@/config/types/entities';
+import { PaymentMethod } from '@/config/types/enums';
 
 export interface GlobalConfig {
-  /**
-   * If true - user will see cart and will be able to add items to cart
-   * If false - user will instantly have an invoice to buy a products
-   */
-  isUseCart: boolean;
-
   createInvoiceLink?: (product: Product[] | ProductCartItem[]) => Promise<string>;
+
+  paymentMethods?: PaymentMethod[];
 }
