@@ -14,7 +14,8 @@
   "dependencies": {
     "@tanstack/react-query": "^5.31.0",
     "@tanstack/react-query-devtools": "^5.31.0",
-    "@tonconnect/ui-react": "^2.0.2",
+    "@ton/ton": "^13.11.2",
+    "@tonconnect/ui-react": "^2.0.5",
     "@types/telegram-web-app": "^7.2.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",

@@ -6,6 +6,8 @@ import { ProductCartItem } from '@/config/types/entities';
 import { PaymentMethod } from '@/config/types/enums';
 import { ChoosePaymentMethodModal, currencyFormatter } from '@/shared';
 import { MainButton } from '@/telegram-web-app/components';
+import { useTonPayment } from '@/ton-integration';
+import { useTonAddress } from '@tonconnect/ui-react';
 import React, { useState } from 'react';
 
 interface Props {
@@ -17,8 +19,10 @@ export const ProductPaymentProcess: React.FC<Props> = ({ totalSum, cartItems }) 
   const {
     global: { paymentMethods },
   } = useAppConfig();
+  const address = useTonAddress();
   const [isOpenPaymentModal, setIsOpenPaymentModal] = useState(false);
   const { mutate: createInvoice, isPending: isInvoiceCreating } = useCreateInvoice();
+  const { mutate: sendTonPayment, isPending: isTonPaymentProcessing } = useTonPayment();
 
   const onChoosePaymentMethod = (paymentMethod: PaymentMethod) => {
     switch (paymentMethod) {
@@ -27,7 +31,8 @@ export const ProductPaymentProcess: React.FC<Props> = ({ totalSum, cartItems }) 
         createInvoice(cartItems);
         break;
       case PaymentMethod.ton:
-        alert('Ton was selected');
+        // TODO add a real price
+        sendTonPayment(0.5);
         break;
     }
   };
@@ -38,10 +43,11 @@ export const ProductPaymentProcess: React.FC<Props> = ({ totalSum, cartItems }) 
         isOpen={isOpenPaymentModal}
         onChoosePaymentMethod={onChoosePaymentMethod}
         onClose={() => setIsOpenPaymentModal(false)}
+        tonAddress={address}
       />
       <MainButton
         text={`Pay ${currencyFormatter(totalSum, cartItems?.[0]?.price.currency)}`}
-        progress={isInvoiceCreating}
+        progress={isInvoiceCreating || isTonPaymentProcessing}
         color="#52c41a"
         onClick={
           paymentMethods?.length === 1

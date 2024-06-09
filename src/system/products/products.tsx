@@ -4,7 +4,6 @@ import { useProducts } from '@/api';
 import { useAppConfig } from '@/config/config-provider';
 import { ProductCard } from '@/shared';
 import { useHapticFeedback } from '@/telegram-web-app/hooks';
-import { TonConnectButton, useTonWallet } from '@tonconnect/ui-react';
 import { useRouter } from 'next-nprogress-bar';
 import React from 'react';
 
@@ -15,7 +14,6 @@ export const Products = () => {
   const { data: products } = useProducts();
   const { impactOccurred } = useHapticFeedback();
   const { mainPage } = useAppConfig();
-  const wallet = useTonWallet();
 
   const onGoToProduct = (id: string) => {
     console.log(`Redirecting to ${id}`);
