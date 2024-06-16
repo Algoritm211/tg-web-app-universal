@@ -1,10 +1,10 @@
 'use client';
 
-import { useCreateInvoice } from '@/api';
+import { useCreateInvoice, useTonExchangeRate } from '@/api';
 import { useAppConfig } from '@/config/config-provider';
 import { ProductCartItem } from '@/config/types/entities';
 import { PaymentMethod } from '@/config/types/enums';
-import { ChoosePaymentMethodModal, currencyFormatter } from '@/shared';
+import { ChoosePaymentMethodModal, cryptoFormatter, currencyFormatter } from '@/shared';
 import { MainButton } from '@/telegram-web-app/components';
 import { useTonPayment } from '@/ton-integration';
 import { useTonAddress } from '@tonconnect/ui-react';
@@ -20,10 +20,11 @@ export const ProductPaymentProcess: React.FC<Props> = ({ totalSum, cartItems }) 
     global: { paymentMethods },
   } = useAppConfig();
   const address = useTonAddress();
+  const { data: exchangeRate, isPending: isExchangeRatePending } = useTonExchangeRate();
   const [isOpenPaymentModal, setIsOpenPaymentModal] = useState(false);
   const { mutate: createInvoice, isPending: isInvoiceCreating } = useCreateInvoice();
   const { mutate: sendTonPayment, isPending: isTonPaymentProcessing } = useTonPayment();
-
+  const priceInTon = totalSum / exchangeRate?.rates?.TON?.prices?.USD!;
   const onChoosePaymentMethod = (paymentMethod: PaymentMethod) => {
     switch (paymentMethod) {
       case PaymentMethod.card:
@@ -32,9 +33,20 @@ export const ProductPaymentProcess: React.FC<Props> = ({ totalSum, cartItems }) 
         break;
       case PaymentMethod.ton:
         // TODO add a real price
-        sendTonPayment(0.5);
+        sendTonPayment(priceInTon);
         break;
     }
+  };
+
+  const getPayButtonText = () => {
+    const base = [];
+    if (paymentMethods?.includes(PaymentMethod.card)) {
+      base.push(currencyFormatter(totalSum, cartItems?.[0]?.price.currency));
+    }
+    if (paymentMethods?.includes(PaymentMethod.ton) && priceInTon) {
+      base.push(`${cryptoFormatter(priceInTon)} TON`);
+    }
+    return `Pay ${base.join(' / ')}`;
   };
 
   return (
@@ -46,7 +58,7 @@ export const ProductPaymentProcess: React.FC<Props> = ({ totalSum, cartItems }) 
         tonAddress={address}
       />
       <MainButton
-        text={`Pay ${currencyFormatter(totalSum, cartItems?.[0]?.price.currency)}`}
+        text={getPayButtonText()}
         progress={isInvoiceCreating || isTonPaymentProcessing}
         color="#52c41a"
         onClick={

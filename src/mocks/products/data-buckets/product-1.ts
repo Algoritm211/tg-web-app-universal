@@ -17,6 +17,6 @@ Discover the charm of "Raspberry Punch" composition from Camellia store. This ex
 `,
   price: {
     currency: 'USD',
-    amount: 85,
+    amount: 5,
   },
 };
