@@ -1,17 +1,30 @@
 import { useTgWebApp } from '@/telegram-web-app';
 import { createTransactionToMerchant } from '@/ton-integration';
 import { useMutation } from '@tanstack/react-query';
-import { useTonConnectUI } from '@tonconnect/ui-react';
+import { useTonAddress, useTonConnectUI } from '@tonconnect/ui-react';
 
 export const useTonPayment = () => {
   const WebApp = useTgWebApp();
   const [tonConnectUI] = useTonConnectUI();
+  const address = useTonAddress();
   return useMutation({
     // TODO add checking the transaction on a backend
-    mutationFn: (tonAmount: number) =>
-      tonConnectUI.sendTransaction(createTransactionToMerchant(tonAmount)),
-    onSuccess: ({ boc }) => {
-      console.log(boc);
+    mutationFn: async (tonAmount: number) => {
+      const { boc } = await tonConnectUI.sendTransaction(createTransactionToMerchant(tonAmount));
+
+      const rawTxHashResponse = await fetch('/api/check-ton-payment', {
+        method: 'POST',
+        body: JSON.stringify({
+          boc: boc || '',
+          chatId: WebApp?.initDataUnsafe?.user?.id,
+          address: address,
+        }),
+      });
+      const txHashResponse = await rawTxHashResponse.json();
+      return txHashResponse.txHash;
+    },
+    onSuccess: (hash) => {
+      console.log(hash);
       WebApp?.showAlert('Transaction was sent to the blockchain', () => {
         WebApp?.close();
       });
