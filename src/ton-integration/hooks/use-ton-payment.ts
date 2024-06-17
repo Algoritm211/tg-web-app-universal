@@ -25,7 +25,7 @@ export const useTonPayment = () => {
     },
     onSuccess: (hash) => {
       console.log(hash);
-      WebApp?.showAlert('Transaction was sent to the blockchain', () => {
+      WebApp?.showAlert('🎉Your payment was successful', () => {
         WebApp?.close();
       });
     },
