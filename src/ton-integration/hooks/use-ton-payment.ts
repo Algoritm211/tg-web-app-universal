@@ -17,15 +17,16 @@ export const useTonPayment = () => {
         body: JSON.stringify({
           boc: boc || '',
           chatId: WebApp?.initDataUnsafe?.user?.id,
+          userFirstName: WebApp?.initDataUnsafe?.user?.first_name,
+          tonAmount,
           address: address,
         }),
       });
       const txHashResponse = await rawTxHashResponse.json();
       return txHashResponse.txHash;
     },
-    onSuccess: (hash) => {
-      console.log(hash);
-      WebApp?.showAlert('🎉Your payment was successful', () => {
+    onSuccess: () => {
+      WebApp?.showAlert('🎉Your transaction has been completed', () => {
         WebApp?.close();
       });
     },
