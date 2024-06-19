@@ -16,6 +16,6 @@ Camellia flower shop offers you a unique opportunity to make a special gift - a 
 `,
   price: {
     currency: 'USD',
-    amount: 78,
+    amount: 7,
   },
 };

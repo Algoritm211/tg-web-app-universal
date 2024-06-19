@@ -18,6 +18,6 @@ By purchasing the Sophia Loren rose in our store, you can be sure of its high qu
 `,
   price: {
     currency: 'USD',
-    amount: 74,
+    amount: 10,
   },
 };
