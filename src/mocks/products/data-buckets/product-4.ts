@@ -21,6 +21,6 @@ By purchasing the "Snow World" composition at Camellia store, you will not only 
 `,
   price: {
     currency: 'USD',
-    amount: 80,
+    amount: 8,
   },
 };

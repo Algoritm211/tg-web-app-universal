@@ -19,6 +19,6 @@ By purchasing the "Misty Bubbles" composition at Camellia store, you are guarant
 `,
   price: {
     currency: 'USD',
-    amount: 99,
+    amount: 9,
   },
 };

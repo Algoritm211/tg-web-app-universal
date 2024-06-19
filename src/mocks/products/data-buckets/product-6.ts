@@ -18,6 +18,6 @@ By purchasing this bouquet at Camellia store, you are guaranteed to receive fres
 `,
   price: {
     currency: 'USD',
-    amount: 93,
+    amount: 9,
   },
 };
