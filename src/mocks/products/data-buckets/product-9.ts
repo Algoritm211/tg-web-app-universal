@@ -20,6 +20,6 @@ Choose quality and beauty - choose "Camellia" store!
 `,
   price: {
     currency: 'USD',
-    amount: 85,
+    amount: 8,
   },
 };

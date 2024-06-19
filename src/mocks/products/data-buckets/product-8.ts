@@ -16,6 +16,6 @@ The Orange Fair Rose Composition is an excellent choice for those who appreciate
 `,
   price: {
     currency: 'USD',
-    amount: 59,
+    amount: 5,
   },
 };

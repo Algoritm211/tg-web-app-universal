@@ -20,6 +20,6 @@ Do not hesitate, buying this composition at "Camellia" is the best choice for th
 `,
   price: {
     currency: 'USD',
-    amount: 67,
+    amount: 7,
   },
 };
