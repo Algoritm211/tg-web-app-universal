@@ -59,10 +59,7 @@ export const Cart = () => {
             <TonConnectButton />
           </div>
           <div className="mx-4 flex justify-end">
-            <Link
-              href="/"
-              className="link text-[var(--tg-theme-link-color)] hover:opacity-80 font-bold"
-            >
+            <Link href="/" className="link text-telegram-link hover:opacity-80 font-bold">
               Edit choice
             </Link>
           </div>

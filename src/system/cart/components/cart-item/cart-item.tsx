@@ -42,14 +42,14 @@ export const CartItem: React.FC<Props> = ({ product, onAddItem, onSubtractItem, 
         <div className="bg-base-200">
           <button
             onClick={onSubtractItem}
-            className="btn btn-sm px-8 text-white opacity-80 hover:bg-[var(--tg-theme-link-color)] hover:opacity-60 bg-[var(--tg-theme-link-color)]"
+            className="btn btn-sm px-8 text-white opacity-80 hover:bg-telegram-link hover:opacity-60 bg-telegram-link"
           >
             -
           </button>
           <span className="px-2">{count}</span>
           <button
             onClick={onAddItem}
-            className="btn btn-sm px-8 text-white hover:bg-[var(--tg-theme-link-color)] hover:opacity-80 bg-[var(--tg-theme-link-color)]"
+            className="btn btn-sm px-8 text-white hover:bg-telegram-link hover:opacity-80 bg-telegram-link"
           >
             +
           </button>

@@ -40,7 +40,7 @@ export const Header = () => {
               <Icon name="cart" className="w-6 h-6" />
               <span
                 className="badge badge-xs text-white indicator-item
-                border-[var(--tg-theme-link-color)] bg-[var(--tg-theme-link-color)]"
+                border-telegram-link bg-telegram-link"
               >
                 {cartItems?.length}
               </span>

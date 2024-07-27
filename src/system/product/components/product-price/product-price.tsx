@@ -42,7 +42,7 @@ export const ProductPrice: React.FC<Props> = ({
         ) : (
           <button
             onClick={onActionClick}
-            className="btn px-12 text-white hover:opacity-60 hover:bg-[var(--tg-theme-link-color)] bg-[var(--tg-theme-link-color)]"
+            className="btn px-12 text-white hover:opacity-60 hover:bg-telegram-link bg-telegram-link"
           >
             {isCreatingInvoicePending ? (
               <span className="loading loading-spinner"></span>
