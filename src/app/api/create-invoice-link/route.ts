@@ -30,7 +30,6 @@ export async function POST(request: Request) {
       },
     ],
     photo_url: `${BASE_PROD_URL || process.env.VERCEL_URL || process.env.NEXT_PUBLIC_TEST_NGROK_URL || 'http://localhost:3000'}/invoice/invoice-stub-image.png`,
-    need_shipping_address: true,
     photo_height: 800,
     photo_width: 800,
   } as Types.NewInvoiceLinkParameters;
