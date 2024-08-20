@@ -10,7 +10,7 @@ import { product7 } from './data-buckets/product-7';
 import { product8 } from './data-buckets/product-8';
 import { product9 } from './data-buckets/product-9';
 
-export const products = [product1];
+export const products = [product1, product2, product3, product4, product5];
 
 export const productMap = products.reduce((acc, product) => {
   acc.set(product.id, product);

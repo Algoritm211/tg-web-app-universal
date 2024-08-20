@@ -1,0 +1,1 @@
+export const TELEGRAM_STARS_IN_ONE_DOLLAR = 50;
