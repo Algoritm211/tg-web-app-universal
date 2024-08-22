@@ -14,6 +14,8 @@ export async function POST(request: Request) {
    */
   const currency = products[0].price.currency;
 
+  console.log('URL', `https://${process.env.VERCEL_URL || process.env.NEXT_PUBLIC_TEST_NGROK_URL || 'http://localhost:3000'}/invoice/invoice-stub-image.png`)
+
   const invoice: Types.NewInvoiceLinkParameters = {
     title: TITLE,
     description: DESCRIPTION,
