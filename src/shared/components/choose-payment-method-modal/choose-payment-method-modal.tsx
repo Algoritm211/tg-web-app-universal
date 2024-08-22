@@ -28,12 +28,8 @@ export const ChoosePaymentMethodModal: React.FC<Props> = ({
         onClick={() => choosePaymentMethod(PaymentMethod.card)}
         className="border rounded w-9/12 mx-auto mb-2 flex items-center justify-center p-3 hover:bg-gray-100 transition-all"
       >
-        <img
-          className="w-8 h-8 mr-4 rounded"
-          src="/payments/tg-star-payments.jpg"
-          alt="Pay using Telegram Stars"
-        />
-        <span>Pay using Telegram Stars</span>
+        <img className="w-12 h-8 mr-4" src="/payments/card-payments.webp" alt="Pay using card" />
+        <span>Pay using card</span>
       </button>
       <button
         disabled={!tonAddress}
