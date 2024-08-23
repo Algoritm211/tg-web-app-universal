@@ -61,7 +61,7 @@ export const ProductGallery: React.FC<Props> = ({ photos = [] }) => {
                 loading="lazy"
                 src={image}
                 alt={`Slide ${index}`}
-                className="w-full h-auto object-cover"
+                className="w-full h-96 object-cover"
               />
             </div>
           ))}

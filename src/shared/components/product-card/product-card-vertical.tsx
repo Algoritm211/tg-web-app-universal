@@ -22,7 +22,7 @@ export const ProductCardVertical: React.FC<Props> = ({ product, goToProductDetai
       onClick={goToProductDetailsClick}
     >
       <figure>
-        <img src={mainImage} className="w-full h-auto object-cover" alt={name} />
+        <img src={mainImage} className="w-full h-96 object-cover" alt={name} />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{name}</h2>

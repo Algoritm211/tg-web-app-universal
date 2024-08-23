@@ -20,7 +20,7 @@ import {
 export const Product = () => {
   const router = useRouter();
   const { id: productId } = useParams<{ id: string }>();
-  const { data: product } = useProduct(productId);
+  const { data: product, isPending: isProductPending } = useProduct(productId);
   const { impactOccurred } = useHapticFeedback();
   const {
     global: { paymentMethods },
@@ -45,6 +45,10 @@ export const Product = () => {
     if (!product) return;
     addItemToCart(mapProductToProductCartItemDTO(product));
   };
+
+  if (isProductPending) {
+    return <span className="block mx-auto mt-16 loading loading-spinner loading-lg"></span>
+  }
 
   return (
     <React.Fragment>
