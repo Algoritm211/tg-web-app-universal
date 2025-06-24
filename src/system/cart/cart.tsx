@@ -11,6 +11,7 @@ import Link from 'next/link';
 import React from 'react';
 
 import { CartItem } from './components';
+import { BackButton, useHapticFeedback } from '@vkruglikov/react-telegram-web-app';
 
 export const Cart = () => {
   const router = useRouter();

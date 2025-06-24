@@ -2,7 +2,6 @@
 
 // We can not useState or useRef in a server component, which is why we are
 // extracting this part out into it's own file with 'use client' on top
-import { useCartItems, useRemoveItemsFromCart } from '@/api';
 import { AppConfigProvider } from '@/config';
 import { InvoiceClosePaymentInfo, useWebApp, WebAppProvider } from '@vkruglikov/react-telegram-web-app';
 import { TonProvider } from '@/ton-integration';
