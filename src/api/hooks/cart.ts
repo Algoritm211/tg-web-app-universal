@@ -1,4 +1,4 @@
-import { cloudStorageClient } from '@/api/fetch-clients/cloud-storage';
+import { useCloudStorage } from '@vkruglikov/react-telegram-web-app';
 import { ProductCartItem, ProductCartItemDTO } from '@/config/types/entities';
 import { CART } from '@/shared';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
@@ -11,6 +11,8 @@ export enum CartItemRemoveType {
 }
 
 export const useCartItems = () => {
+  const cloudStorageClient = useCloudStorage();
+
   return useQuery({
     queryKey: [CART],
     queryFn: async () => {
@@ -23,6 +25,7 @@ export const useCartItems = () => {
 
 export const useAddItemsToCart = () => {
   const queryClient = useQueryClient();
+  const cloudStorageClient = useCloudStorage();
 
   return useMutation({
     mutationFn: async (newItem: ProductCartItemDTO) => {
@@ -52,6 +55,7 @@ export const useAddItemsToCart = () => {
 
 export const useRemoveItemsFromCart = () => {
   const queryClient = useQueryClient();
+  const cloudStorageClient = useCloudStorage();
 
   return useMutation({
     mutationFn: async ({

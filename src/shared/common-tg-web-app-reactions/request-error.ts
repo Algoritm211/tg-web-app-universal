@@ -1,4 +1,4 @@
-import { getWebAppFromGlobal } from '@/telegram-web-app/core';
+import { getWebAppFromGlobal } from "../utils";
 
 export const onError = () => {
   const WebApp = getWebAppFromGlobal();

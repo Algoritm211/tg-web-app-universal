@@ -3,7 +3,7 @@
 // We can not useState or useRef in a server component, which is why we are
 // extracting this part out into it's own file with 'use client' on top
 import { AppConfigProvider } from '@/config';
-import { useTgWebApp } from '@/telegram-web-app';
+import { useWebApp, WebAppProvider } from '@vkruglikov/react-telegram-web-app';
 import { TonProvider } from '@/ton-integration';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AppProgressBar as ProgressBar } from 'next-nprogress-bar';
@@ -43,7 +43,7 @@ export default function Providers({ children }: PropsWithChildren) {
   //       suspend because React will throw away the client on the initial
   //       render if it suspends and there is no boundary
   const queryClient = getQueryClient();
-  const webApp = useTgWebApp();
+  const webApp = useWebApp();
 
   useEffect(() => {
     webApp?.ready();
@@ -52,16 +52,18 @@ export default function Providers({ children }: PropsWithChildren) {
 
   return (
     <AppConfigProvider>
-      <TonProvider>
-        <QueryClientProvider client={queryClient}>
-          {children}
-          <ProgressBar
-            height="2px"
-            color="var(--tg-theme-link-color)"
-            options={{ showSpinner: true }}
-          />
-        </QueryClientProvider>
-      </TonProvider>
+      <WebAppProvider options={{ smoothButtonsTransition: true}}>
+        <TonProvider>
+          <QueryClientProvider client={queryClient}>
+            {children}
+            <ProgressBar
+              height="2px"
+              color="var(--tg-theme-link-color)"
+              options={{ showSpinner: true }}
+            />
+          </QueryClientProvider>
+        </TonProvider>
+      </WebAppProvider>
     </AppConfigProvider>
   );
 }

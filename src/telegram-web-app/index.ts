@@ -1,1 +1,0 @@
-export { useTgWebApp } from './hooks';

@@ -3,8 +3,7 @@
 import { CartItemRemoveType, useAddItemsToCart, useCartItems, useRemoveItemsFromCart } from '@/api';
 import { ProductCartItem } from '@/config/types/entities';
 import { currencyFormatter, EmptyState, ProductPaymentProcess } from '@/shared';
-import { BackButton } from '@/telegram-web-app/components';
-import { useHapticFeedback } from '@/telegram-web-app/hooks';
+import { BackButton, useHapticFeedback } from '@vkruglikov/react-telegram-web-app';
 import { TonConnectButton, useTonAddress } from '@tonconnect/ui-react';
 import { clsx } from 'clsx';
 import { useRouter } from 'next-nprogress-bar';
@@ -15,7 +14,7 @@ import { CartItem } from './components';
 
 export const Cart = () => {
   const router = useRouter();
-  const { impactOccurred } = useHapticFeedback();
+  const [ impactOccurred ] = useHapticFeedback();
   const address = useTonAddress();
   const { data: cartItems } = useCartItems();
   const { mutate: addItemToCart, isPending: isAddingItemsToCart } = useAddItemsToCart();

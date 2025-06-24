@@ -4,8 +4,6 @@ import { useAddItemsToCart, useCartItems, useProduct } from '@/api';
 import { useCreateInvoice } from '@/api/hooks';
 import { useAppConfig } from '@/config/config-provider';
 import { mapProductToProductCartItemDTO } from '@/shared';
-import { BackButton, MainButton } from '@/telegram-web-app/components';
-import { useHapticFeedback } from '@/telegram-web-app/hooks';
 import { useRouter } from 'next-nprogress-bar';
 import { useParams } from 'next/navigation';
 import React from 'react';
@@ -16,12 +14,13 @@ import {
   ProductPrice,
   ProductDescription,
 } from './components';
+import { BackButton, MainButton, useHapticFeedback } from '@vkruglikov/react-telegram-web-app';
 
 export const Product = () => {
   const router = useRouter();
   const { id: productId } = useParams<{ id: string }>();
   const { data: product, isPending: isProductPending } = useProduct(productId);
-  const { impactOccurred } = useHapticFeedback();
+  const [ impactOccurred ] = useHapticFeedback();
   const {
     global: { paymentMethods },
   } = useAppConfig();

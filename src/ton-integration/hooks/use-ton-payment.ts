@@ -1,10 +1,10 @@
-import { useTgWebApp } from '@/telegram-web-app';
 import { createTransactionToMerchant } from '@/ton-integration';
 import { useMutation } from '@tanstack/react-query';
 import { useTonAddress, useTonConnectUI } from '@tonconnect/ui-react';
+import { useWebApp } from '@vkruglikov/react-telegram-web-app';
 
 export const useTonPayment = () => {
-  const WebApp = useTgWebApp();
+  const WebApp = useWebApp();
   const [tonConnectUI] = useTonConnectUI();
   const address = useTonAddress();
   return useMutation({

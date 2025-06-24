@@ -1,6 +1,6 @@
 {
   "name": "tg-web-app-universal",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -17,6 +17,7 @@
     "@ton/ton": "^13.11.2",
     "@tonconnect/ui-react": "^2.0.5",
     "@types/telegram-web-app": "^7.2.1",
+    "@vkruglikov/react-telegram-web-app": "^2.1.9",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
