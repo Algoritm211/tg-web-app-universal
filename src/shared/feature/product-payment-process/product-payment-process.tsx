@@ -5,9 +5,9 @@ import { useAppConfig } from '@/config/config-provider';
 import { ProductCartItem } from '@/config/types/entities';
 import { PaymentMethod } from '@/config/types/enums';
 import { ChoosePaymentMethodModal, cryptoFormatter, currencyFormatter } from '@/shared';
-import { MainButton } from '@vkruglikov/react-telegram-web-app';
 import { useTonPayment } from '@/ton-integration';
 import { useTonAddress } from '@tonconnect/ui-react';
+import { MainButton } from '@vkruglikov/react-telegram-web-app';
 import React, { useState } from 'react';
 
 interface Props {

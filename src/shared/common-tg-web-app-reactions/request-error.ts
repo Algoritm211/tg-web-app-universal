@@ -1,4 +1,4 @@
-import { getWebAppFromGlobal } from "../utils";
+import { getWebAppFromGlobal } from '../utils';
 
 export const onError = () => {
   const WebApp = getWebAppFromGlobal();

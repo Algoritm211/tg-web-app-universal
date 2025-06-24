@@ -8,7 +8,7 @@ import React from 'react';
 import { Icon } from '@/shared/components/icon/icon';
 
 export const Header = () => {
-  const [ impactOccurred ] = useHapticFeedback();
+  const [impactOccurred] = useHapticFeedback();
   const { data: cartItems, isLoading } = useCartItems();
 
   return (

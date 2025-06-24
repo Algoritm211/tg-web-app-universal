@@ -3,16 +3,16 @@
 import { useProducts } from '@/api';
 import { useAppConfig } from '@/config/config-provider';
 import { ProductCard } from '@/shared';
+import { useHapticFeedback } from '@vkruglikov/react-telegram-web-app';
 import { useRouter } from 'next-nprogress-bar';
 import React from 'react';
 
 import { ProductContainer } from '@/system/products/components/product-container/product-container';
-import { useHapticFeedback } from '@vkruglikov/react-telegram-web-app';
 
 export const Products = () => {
   const router = useRouter();
   const { data: products } = useProducts();
-  const [ impactOccurred ] = useHapticFeedback();
+  const [impactOccurred] = useHapticFeedback();
   const { mainPage } = useAppConfig();
 
   const onGoToProduct = (id: string) => {

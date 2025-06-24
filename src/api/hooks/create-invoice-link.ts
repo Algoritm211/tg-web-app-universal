@@ -1,12 +1,12 @@
 import { config } from '@/config/client-main-config';
 import { useMutation } from '@tanstack/react-query';
+import { useHapticFeedback, useWebApp } from '@vkruglikov/react-telegram-web-app';
 
 import { onError } from '@/shared/common-tg-web-app-reactions';
-import { useHapticFeedback, useWebApp } from '@vkruglikov/react-telegram-web-app';
 
 export const useCreateInvoice = () => {
   const WebApp = useWebApp();
-  const [,notificationOccurred] = useHapticFeedback();
+  const [, notificationOccurred] = useHapticFeedback();
   return useMutation({
     mutationFn: config.global.createInvoiceLink,
     onSuccess: (invoiceURL) => {

@@ -1,7 +1,7 @@
-import { useCloudStorage } from '@vkruglikov/react-telegram-web-app';
 import { ProductCartItem, ProductCartItemDTO } from '@/config/types/entities';
 import { CART } from '@/shared';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useCloudStorage } from '@vkruglikov/react-telegram-web-app';
 
 const CART_STORAGE_KEY = 'SHOP_CART';
 

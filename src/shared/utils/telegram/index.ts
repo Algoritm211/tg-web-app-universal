@@ -1,1 +1,1 @@
-export * from './get-web-app-from-global'
+export * from './get-web-app-from-global';
