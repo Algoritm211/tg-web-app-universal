@@ -1,14 +1,14 @@
 'use client';
 
 import { useCartItems } from '@/api';
+import { useHapticFeedback } from '@vkruglikov/react-telegram-web-app';
 import Link from 'next/link';
 import React from 'react';
 
 import { Icon } from '@/shared/components/icon/icon';
-import { useHapticFeedback } from '@vkruglikov/react-telegram-web-app';
 
 export const Header = () => {
-  const [ impactOccurred ] = useHapticFeedback();
+  const [impactOccurred] = useHapticFeedback();
   const { data: cartItems, isLoading } = useCartItems();
 
   return (

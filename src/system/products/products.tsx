@@ -9,13 +9,11 @@ import { useRouter } from 'next-nprogress-bar';
 import React from 'react';
 
 import { ProductContainer } from '@/system/products/components/product-container/product-container';
-import { useHapticFeedback } from '@vkruglikov/react-telegram-web-app';
-import { ProductContainer } from './components/product-container/product-container';
 
 export const Products = () => {
   const router = useRouter();
   const { data: products } = useProducts();
-  const [impactOccurred] =useHapticFeedback();
+  const [impactOccurred] = useHapticFeedback();
   const { mainPage } = useAppConfig();
 
   const onGoToProduct = (id: string) => {
