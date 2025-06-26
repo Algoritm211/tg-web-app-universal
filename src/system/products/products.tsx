@@ -4,7 +4,6 @@ import { useProducts } from '@/api';
 import { useAppConfig } from '@/config/config-provider';
 import { ProductCard } from '@/shared';
 import { useHapticFeedback } from '@vkruglikov/react-telegram-web-app';
-import { useHapticFeedback } from '@vkruglikov/react-telegram-web-app';
 import { useRouter } from 'next-nprogress-bar';
 import React from 'react';
 
